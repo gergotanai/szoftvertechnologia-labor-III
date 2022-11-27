@@ -1,0 +1,14 @@
+<!-- We can use parameters too -->
+<!-- To pass a property argument use: -p:variable=value -->
+<!-- dotnet msbuild -p:Person=Gergő -->
+<!-- We can pass the Greeting property itself and ovveride the value in it-->
+<!-- dotnet msbuild -p:Person=Gergő -p:Greeting="Hello MSBuild!" -->
+<Project>
+  <PropertyGroup>
+    <Greeting>Hello $(Person)!</Greeting>
+  </PropertyGroup>
+
+  <Target Name="Greet">
+    <Message Text="$(Greeting)" Importance="high" />
+  </Target>
+</Project>

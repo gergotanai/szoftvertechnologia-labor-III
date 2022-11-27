@@ -1,0 +1,23 @@
+<Project>
+  <ItemGroup>
+    <Person Include="Martin;Christina" />
+    <Person Include="John" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AdditionalPeople>Maria;Andrew</AdditionalPeople>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Person Include="$(AdditionalPeople)" />
+    <Perons Include="Martin" />
+    <Perons Include="Martin" />
+    <Person Remove="Martin" />
+  </ItemGroup>
+
+  <Target Name="Greet">
+    <!-- %(Identity) is the item specified in the Include attribute-->
+    <!-- %0A is XML-encoding of a newline -->
+    <Message Text="@(Person->'Hello %(Identity)', '%0A')" Importance="high" />
+  </Target>
+</Project>

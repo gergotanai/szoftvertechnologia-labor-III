@@ -1,0 +1,23 @@
+<Project>
+  <ItemGroup>
+    <!-- We can use glob patterns -->
+    <GreetFile Include="*.greet.txt" />
+  </ItemGroup>
+
+  <Target Name="Greet">
+    <!-- ReadLinesFromFile reads a list of items from a text file -->
+    <!-- In this case %(GreetFile.Identity) [batching] is foreach *.greet.txt -->
+    <ReadLinesFromFile File="%(GreetFile.Identity)">
+      <!-- Output stores task output values in items and properties -->
+      <!-- TaskParameter is a required attribute, the name of the task's output parameter -->
+      <!-- In case of an Output either the PropertyName or ItemName attribute is required you can't use both -->
+      <!-- ItemName is the item that receives the task's output parameter value. Your project can then reference the item with the @(Item) syntax. The item name can either be a new item name or a name that is already defined in the project. When the item name is an existing item, the output parameter values are added to the existing item -->
+      <Output TaskParameter="Lines" ItemName="Greeting" />
+    </ReadLinesFromFile>
+    
+    <Message Text="@(Greeting, '%0A')" Importance="high" />
+
+    <!-- FullPath and ModifiedTime are built in metadata -->
+    <Message Text="Used Greetings from: %0A@(GreetFile->'* %(FullPath) - %(ModifiedTime)', '%0A')" Importance="high" />
+  </Target>
+</Project>

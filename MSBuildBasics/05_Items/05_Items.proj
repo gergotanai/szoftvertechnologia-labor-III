@@ -1,0 +1,22 @@
+<Project>
+  <!-- The difference between propertys and items are that items are more like collections -->
+  <!-- I can have multiple items of the same item type but I can only have one property for a property name -->
+  <!-- Inside a PropertyGroup if I have more than one defintions with the same name it will just override the value -->
+  <ItemGroup>
+    <!-- Use the Include statement the add values -->
+    <!-- There are more attributes: Include, Exclude, Remove etc. -->
+    <!-- The semicolon ";" separetes the different values -->
+    <!-- We can reuse this item in a string with the following syntax: @(Item) -->
+    <Person Include="Martin;Christina" />
+    <Person Include="John" />
+    <Person Include="John" />
+    <Person Include="John" Exclude="John"/>
+    <Person Include="Andrew" />
+    <Person Include="Andrew" />
+    <Person Remove="Andrew" />
+  </ItemGroup>
+
+  <Target Name="Greet">
+    <Message Text="Hello @(Person)" Importance="high" />
+  </Target>
+</Project>

@@ -1,0 +1,14 @@
+<Project>
+  <ItemGroup>
+    <Person Include="Martin" Age="28" />
+    <Person Include="John" Age="15" />
+    <Person Include="Christina" Age="28" />
+  </ItemGroup>
+
+  <Target Name="GreetByAge">
+    <!-- The percent sign "%" is some kind of for loop, this is called batching -->
+    <!-- It collects things with the same kind of metadata and then performs the task for all the distinct sets of metadata that it found -->
+    <!-- Group by age and then an item transformation to use a different kind of separator -->
+    <Message Text="%(Person.Age): Hello @(Person, ', ')!" Importance="high" />
+  </Target>
+</Project>

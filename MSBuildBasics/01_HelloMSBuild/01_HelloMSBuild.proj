@@ -1,0 +1,10 @@
+<!-- To run MSBuild execute the following command: dotnet msbuild -->
+<Project>
+  <!-- Targets are like functions -->
+  <!-- Inside targets we can use statements, in MSBuild they are called tasks -->
+  <Target Name="Greet">
+    <!-- Message logs an output to the console -->
+    <!-- Importance high ensures that the output will go to the console -->
+    <Message Text="Hello MSBuild" Importance="high" />
+  </Target>
+</Project>

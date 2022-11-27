@@ -1,0 +1,13 @@
+<Project>
+  <!-- Propertys are like variables -->
+  <!-- PropertyGroup holds the propertys -->
+  <PropertyGroup>
+    <!-- Here is property called Greeting -->
+    <!-- We can reuse this property in a string with the following syntax: $(Property) -->
+    <Greeting>Hello MSBuild!</Greeting>
+  </PropertyGroup>
+
+  <Target Name="Greet">
+    <Message Text="$(Greeting)" Importance="high" />
+  </Target>
+</Project>

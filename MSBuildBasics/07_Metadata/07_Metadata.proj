@@ -1,0 +1,20 @@
+<Project>
+  <!-- We can define the default behavior in the ItemDefinitionGroup for the Greeting metadata -->
+  <ItemDefinitionGroup>
+    <Person>
+      <Greeting>Hello %(Identity)!</Greeting>
+    </Person>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <Person Include="Martin;Christina" />
+    <!-- Greeting is now a metadata -->
+    <Person Include="John" Greeting="Hey Johnny!" />
+  </ItemGroup>
+
+  <Target Name="Greet">
+    <!-- The percent sign "%" is some kind of for loop, this is called batching -->
+    <!-- It collects things with the same kind of metadata and then performs the task for all the distinct sets of metadata that it found -->
+    <Message Text="%(Person.Greeting)" Importance="high" />
+  </Target>
+</Project>
